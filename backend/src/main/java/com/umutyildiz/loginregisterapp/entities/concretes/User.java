@@ -9,6 +9,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 
 @Table(name = "user")
@@ -23,14 +25,18 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank
     @Column(name = "name")
     private String name;
 
+    @NotBlank
     @Column(name = "password")
     private String userPassword;
 
     @Column(name = "email")
     @UniqueEmail
+    @Email
+    @NotBlank
     private String email;
 
 
